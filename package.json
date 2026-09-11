@@ -4,11 +4,11 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "postinstall": "chmod +x node_modules/.bin/*"
-  },
+  "dev": "vite",
+  "build": "npx --no-install vite build",
+  "preview": "vite preview",
+  "postinstall": "chmod -R +x node_modules/.bin || true"
+},
   "dependencies": {
 <<<<<<< HEAD
     "react": "^18.3.1",
