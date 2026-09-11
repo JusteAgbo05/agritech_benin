@@ -1,4 +1,4 @@
-# AgriDiag Bénin — Prototype frontend
+# AgriTech Bénin — Prototype frontend
 
 Prototype web (React + Vite) développé pour le hackathon **Deep Learning IndabaX
 Bénin 2026 × iSHEERO**. Permet à un agriculteur de photographier une feuille de
