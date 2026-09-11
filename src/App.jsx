@@ -98,8 +98,8 @@ export default function App() {
       <footer className="app__footer">
         <p>
           Prototype développé pour le hackathon Deep Learning IndabaX Bénin 2026 × iSHEERO.
-          Les prédictions actuelles sont simulées en attendant l'intégration du modèle
-          entraîné — voir <code>src/lib/predict.js</code>.
+          Diagnostic assuré par un modèle entraîné localement, exécuté directement dans
+          votre navigateur — voir <code>src/lib/predict.js</code>.
         </p>
       </footer>
     </div>
