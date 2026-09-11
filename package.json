@@ -10,9 +10,15 @@
     "postinstall": "chmod +x node_modules/.bin/*"
   },
   "dependencies": {
+<<<<<<< HEAD
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "@tensorflow/tfjs": "^4.20.0"
+=======
+    "@tensorflow/tfjs": "^4.22.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+>>>>>>> 8caf4bb2 (deuxieme commit)
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.1",

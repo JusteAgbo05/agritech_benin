@@ -1,4 +1,5 @@
 import * as tf from '@tensorflow/tfjs'
+<<<<<<< HEAD
 import { DISEASES } from './diseases'
 
 // ---------------------------------------------------------------------
@@ -41,6 +42,33 @@ const CULTURE_TO_PREFIX = {
   tomate: 'tomato',
   mais: 'maize',
 }
+=======
+import { MODEL_CLASSES } from './diseases'
+
+// ---------------------------------------------------------------------
+// INFÉRENCE RÉELLE — MobileNetV2 + Transfer Learning
+// ---------------------------------------------------------------------
+// Modèle fourni par l'équipe ML : entrée 224×224×3, 6 classes, normalisation
+// [-1, 1] (identique au prétraitement utilisé pendant l'entraînement).
+// Accuracy validation 95,75 % / test 93,49 % sur 2599 images.
+//
+// ÉTAPE OBLIGATOIRE AVANT QUE CE FICHIER FONCTIONNE :
+// `best_model.keras` doit être converti au format TensorFlow.js, puis placé
+// dans /public/model/ :
+//
+//   pip install tensorflowjs
+//   tensorflowjs_converter --input_format=keras \
+//     best_model.keras \
+//     public/model
+//
+// Cette commande génère public/model/model.json + un ou plusieurs fichiers
+// .bin. Ne pas renommer ces fichiers ni changer leur emplacement, sinon
+// loadLayersModel() ci-dessous ne les trouvera pas.
+// ---------------------------------------------------------------------
+
+const MODEL_URL = '/model/model.json'
+const INPUT_SIZE = 224
+>>>>>>> 8caf4bb2 (deuxieme commit)
 
 export const CONFIDENCE_THRESHOLD = 0.65
 
@@ -48,11 +76,16 @@ let modelPromise = null
 
 function loadModel() {
   if (!modelPromise) {
+<<<<<<< HEAD
     modelPromise = tf.loadLayersModel('/model/model.json')
+=======
+    modelPromise = tf.loadGraphModel(MODEL_URL)
+>>>>>>> 8caf4bb2 (deuxieme commit)
   }
   return modelPromise
 }
 
+<<<<<<< HEAD
 function preprocessImage(imageElement) {
   return tf.tidy(() => {
     let tensor = tf.browser
@@ -114,5 +147,46 @@ export async function predict(imageElement, cultureId) {
   return {
     diseaseId,
     confidence: Math.round(bestScore * 100) / 100,
+=======
+/**
+ * @param {HTMLImageElement | HTMLVideoElement | HTMLCanvasElement} imageElement
+ * @param {'tomate' | 'mais'} cultureId culture sélectionnée par l'utilisateur
+ *   (sert uniquement à détecter une éventuelle incohérence avec la classe
+ *   prédite — le modèle, lui, classe toujours parmi les 6 classes)
+ * @returns {Promise<{ diseaseId: string, confidence: number, predictedCulture: string, cultureMismatch: boolean }>}
+ */
+export async function predict(imageElement, cultureId) {
+  const model = await loadModel()
+
+  const logits = tf.tidy(() => {
+    const tensor = tf.browser
+      .fromPixels(imageElement)
+      .resizeBilinear([INPUT_SIZE, INPUT_SIZE])
+      .toFloat()
+      .div(127.5)
+      .sub(1) // normalisation [-1, 1], identique à l'entraînement
+      .expandDims(0)
+
+    return model.predict(tensor)
+  })
+
+  const scores = await logits.data()
+  logits.dispose()
+
+  let bestIndex = 0
+  for (let i = 1; i < scores.length; i += 1) {
+    if (scores[i] > scores[bestIndex]) bestIndex = i
+  }
+
+  const diseaseId = MODEL_CLASSES[bestIndex]
+  const confidence = Math.round(scores[bestIndex] * 100) / 100
+  const predictedCulture = diseaseId.startsWith('maize') ? 'mais' : 'tomate'
+
+  return {
+    diseaseId,
+    confidence,
+    predictedCulture,
+    cultureMismatch: predictedCulture !== cultureId,
+>>>>>>> 8caf4bb2 (deuxieme commit)
   }
 }

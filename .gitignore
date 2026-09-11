@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 node_modules/
 dist/
 
@@ -5,10 +6,27 @@ dist/
 .env
 .env.*
 !.env.example
+=======
+node_modules
+dist
+.DS_Store
+*.local
+
+# Environnement / secrets
+.env
+.env.local
+.env.*.local
+
+# Éditeurs
+.vscode/*
+!.vscode/extensions.json
+.idea
+>>>>>>> 8caf4bb2 (deuxieme commit)
 
 # Logs
 *.log
 npm-debug.log*
+<<<<<<< HEAD
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
@@ -17,3 +35,14 @@ pnpm-debug.log*
 .DS_Store
 *.local
 .vscode/
+=======
+
+# Environnements virtuels Python (ex: conversion tensorflowjs)
+.venv*
+venv/
+__pycache__/
+*.pyc
+
+# IMPORTANT : ne PAS ignorer public/model/ (model.json + .bin) —
+# ces fichiers sont nécessaires pour que l'app fonctionne une fois clonée.
+>>>>>>> 8caf4bb2 (deuxieme commit)

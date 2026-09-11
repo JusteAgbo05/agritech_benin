@@ -35,6 +35,24 @@ body {
   flex-direction: column;
 }
 
+<<<<<<< HEAD
+=======
+/* ---------- Partner banner ---------- */
+
+.app__partner-banner {
+  display: flex;
+  justify-content: center;
+  padding: 1.5rem 0 0.5rem;
+}
+
+.app__partner-logo {
+  max-width: 100%;
+  width: 360px;
+  height: auto;
+  display: block;
+}
+
+>>>>>>> 8caf4bb2 (deuxieme commit)
 /* ---------- Header ---------- */
 
 .app__header {
@@ -305,6 +323,18 @@ body {
   color: var(--alert);
 }
 
+<<<<<<< HEAD
+=======
+.result__eyebrow {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  margin: 0 0 0.3rem;
+  font-weight: 600;
+}
+
+>>>>>>> 8caf4bb2 (deuxieme commit)
 .result__title {
   font-family: var(--font-display);
   font-size: 1.4rem;
